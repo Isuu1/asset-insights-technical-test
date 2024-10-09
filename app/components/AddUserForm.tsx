@@ -5,6 +5,7 @@ import { ZodError } from "zod"; // Import ZodError
 
 import styles from "./addUserForm.module.css";
 import { formSchema } from "../validations/form";
+import toast from "react-hot-toast";
 
 interface FormData {
   name: string;
@@ -58,8 +59,17 @@ const AddUserForm = () => {
         }
       );
       //Refresh the page after adding a new user
+      toast.success("Successfully added new user!");
+      //Refresh the page after adding a new user to display new data
       router.refresh();
-      setFormData({ name: "", email: "", age: 0, image: "" });
+      //Reset form data and error state
+      setFormData({
+        name: "",
+        email: "",
+        age: 0,
+        image: "/images/avatar.png",
+      });
+      setError(null);
     } catch (error) {
       console.log(error);
     }
