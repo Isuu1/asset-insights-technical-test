@@ -1,0 +1,32 @@
+.form {
+  background: #3d3d41;
+  padding: 1rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: auto;
+}
+
+.form button {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.formInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formInputs input {
+  border: 1px solid #bbbbbb;
+  padding: 0.5rem;
+  border-radius: 14px;
+  background: #3d3d41;
+}
+
+.formInputs input::placeholder {
+  color: #bbbbbb;
+}

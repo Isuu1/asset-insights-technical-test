@@ -1,27 +1,11 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: #171718;
+  font-family: "Roboto", sans-serif;
 }
 
 * {
@@ -33,6 +17,18 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+button {
+  border: 0;
+  border-radius: 14px;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: #9d9d9e;
 }
 
 @media (prefers-color-scheme: dark) {
