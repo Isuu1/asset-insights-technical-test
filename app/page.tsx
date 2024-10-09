@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 
 import AddUserForm from "./components/AddUserForm";
+import DeleteUserButton from "./components/DeleteUserButton";
 
 interface UserData {
   name: string;
@@ -24,6 +25,7 @@ export default async function Home() {
             <h1>{user.name}</h1>
             <p>{user.age}</p>
             <p>{user.email}</p>
+            <DeleteUserButton />
           </div>
         ))}
       </main>
