@@ -19,6 +19,9 @@ export default async function Home() {
       cache: "no-store",
     }
   );
+  if (!response.ok) {
+    throw new Error("Failed to fetch users");
+  }
   const data: UserData[] = await response.json();
   console.log(data);
 
