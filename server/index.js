@@ -10,6 +10,10 @@ require("dotenv").config();
 //Import routes
 const routes = require("./routes");
 
+// Middleware to parse JSON and URL-encoded data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 //Connect to MongoDB
 const mongoString = process.env.DATABASE_URL;
 mongoose.connect(mongoString);
@@ -27,7 +31,7 @@ db.once("connected", () => {
 const cors = require("cors");
 app.use(cors());
 
-//Use routes from separate file
+//Use routes from separate file with prefix /api
 app.use("/api", routes);
 
 //Port to listen
