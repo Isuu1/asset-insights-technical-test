@@ -25,13 +25,16 @@ const AddUserForm = () => {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     try {
-      await fetch(`http://localhost:3000/api/post`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL as string}/post`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       //Refresh the page after adding a new user
       router.refresh();
       setFormData({ name: "", email: "", age: 0 });

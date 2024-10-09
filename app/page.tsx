@@ -7,12 +7,16 @@ interface UserData {
   name: string;
   age: number;
   email: string;
+  _id: string;
 }
 
 export default async function Home() {
-  const response = await fetch("http://localhost:3000/api", {
-    cache: "no-store",
-  });
+  const response = await fetch(
+    process.env.NEXT_PUBLIC_API_URL as string,
+    {
+      cache: "no-store",
+    }
+  );
   const data: UserData[] = await response.json();
   console.log(data);
 
@@ -21,11 +25,11 @@ export default async function Home() {
       <main className={styles.main}>
         <AddUserForm />
         {data.map((user) => (
-          <div key={user.email}>
+          <div key={user._id}>
             <h1>{user.name}</h1>
             <p>{user.age}</p>
             <p>{user.email}</p>
-            <DeleteUserButton />
+            <DeleteUserButton id={user._id} />
           </div>
         ))}
       </main>
