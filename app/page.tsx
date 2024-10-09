@@ -50,6 +50,12 @@ export default async function Home() {
               <DeleteUserButton id={user._id} />
             </div>
           ))}
+          {!data.length && (
+            <div className={styles.missingUsers}>
+              <h3>No users found</h3>
+              <p>Add user using the form above</p>
+            </div>
+          )}
         </div>
       </main>
       <footer className={styles.footer}></footer>

@@ -31,3 +31,13 @@
 .userCard button {
   margin-top: 1rem;
 }
+
+.missingUsers {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 1rem;
+  min-height: 200px;
+  margin: auto;
+}

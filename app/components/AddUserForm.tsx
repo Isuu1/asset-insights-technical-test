@@ -85,6 +85,7 @@ const AddUserForm = () => {
             type="text"
             name="name"
             placeholder="Name"
+            value={formData.name}
             onChange={handleInputChange}
           />
         </label>
@@ -96,6 +97,7 @@ const AddUserForm = () => {
             type="text"
             name="email"
             placeholder="Email"
+            value={formData.email}
             onChange={handleInputChange}
           />
         </label>
@@ -107,6 +109,7 @@ const AddUserForm = () => {
             type="number"
             name="age"
             placeholder="Age"
+            value={formData.age}
             onChange={handleInputChange}
           />
         </label>
