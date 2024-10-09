@@ -2,6 +2,12 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+Clone the repository to your local machine:
+
+```bash
+git clone https://github.com/Isuu1/asset-insights-technical-test.git .
+```
+
 Install packages:
 
 ```bash
