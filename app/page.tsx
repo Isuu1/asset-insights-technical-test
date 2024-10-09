@@ -30,10 +30,10 @@ export default async function Home() {
           {data.map((user) => (
             <div className={styles.userCard} key={user._id}>
               <Image
-                src={user.image}
+                src="/images/avatar.png"
                 alt={user.name}
-                width={200}
-                height={200}
+                width={150}
+                height={150}
               />
               <h3>
                 <span>Name: </span>

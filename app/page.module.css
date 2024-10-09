@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  max-width: 600px;
+  max-width: 90%;
   margin: auto;
 }
 
@@ -21,7 +21,12 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.4rem;
   background: #3d3d41;
   border-radius: 20px;
+}
+
+.userCard button {
+  margin-top: 1rem;
 }
