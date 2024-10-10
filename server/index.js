@@ -13,6 +13,9 @@ const routes = require("./routes");
 // Middleware to parse JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+//Set up CORS
+const cors = require("cors");
+app.use(cors());
 app.use(
   cors({
     origin: [
@@ -36,10 +39,6 @@ db.on("error", (error) => console.error(error));
 db.once("connected", () => {
   console.log("Database Connected");
 });
-
-//Set up CORS
-const cors = require("cors");
-app.use(cors());
 
 //Use routes from separate file with prefix /api
 app.use("/api", routes);
