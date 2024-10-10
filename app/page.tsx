@@ -1,8 +1,7 @@
 import styles from "./page.module.css";
 
 import AddUserForm from "./components/AddUserForm";
-import DeleteUserButton from "./components/DeleteUserButton";
-import Image from "next/image";
+import UserCard from "./components/UserCard/UserCard";
 
 interface UserData {
   name: string;
@@ -31,27 +30,7 @@ export default async function Home() {
         <AddUserForm />
         <div className={styles.usersContainer}>
           {data.map((user) => (
-            <div className={styles.userCard} key={user._id}>
-              <Image
-                src="/images/avatar.png"
-                alt={user.name}
-                width={150}
-                height={150}
-              />
-              <h3>
-                <span>Name: </span>
-                {user.name}
-              </h3>
-              <p>
-                <span>Age: </span>
-                {user.age}
-              </p>
-              <p>
-                <span>Email: </span>
-                {user.email}
-              </p>
-              <DeleteUserButton id={user._id} />
-            </div>
+            <UserCard key={user._id} user={user} />
           ))}
           {!data.length && (
             <div className={styles.missingUsers}>
