@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import styles from "./userCard.module.css";
-import DeleteUserButton from "../DeleteUserButton";
+import DeleteUserButton from "../DeleteUserButton/DeleteUserButton";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { formSchema } from "@/app/validations/form";
+import { ZodError } from "zod";
 
 interface UserData {
   name: string;
@@ -19,7 +21,10 @@ interface UserCardProps {
 }
 
 const UserCard: React.FC<UserCardProps> = ({ user }) => {
+  //If enabled all input fields will be editable
   const [isEditing, setIsEditing] = useState(false);
+  //Error state to store validation issues
+  const [error, setError] = useState<ZodError["issues"] | null>(null);
 
   const [formData, setFormData] = useState<UserData>({
     name: user.name,
@@ -44,8 +49,14 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
   };
 
   const handleSave = async () => {
-    console.log("Save button clicked");
-    setIsEditing(!isEditing);
+    // Validate form data
+    const validate = formSchema.safeParse(formData);
+
+    // If validation fails, set error state
+    if (!validate.success) {
+      setError(validate.error.issues);
+      return;
+    }
     try {
       await fetch(
         `${process.env.NEXT_PUBLIC_API_URL as string}/update/${
@@ -63,21 +74,16 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
       toast.success("Details changed successfuly!");
       //Refresh the page after adding a new user to display new data
       router.refresh();
+      //Turn off editing mode
+      setIsEditing(false);
     } catch (error) {
       console.error("Failed to update user", error);
     }
   };
 
-  console.log(formData);
-
   return (
     <div className={styles.userCard}>
-      <Image
-        src="/images/avatar.png"
-        alt={user.name}
-        width={150}
-        height={150}
-      />
+      <DeleteUserButton id={user._id} />
       {isEditing ? (
         <form className={styles.form}>
           <h2 className={styles.headline}>Edit user details</h2>
@@ -89,6 +95,12 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
               onChange={handleChange}
             />
           </label>
+          <p className={styles.error}>
+            {
+              error?.find((issue) => issue.path[0] === "name")
+                ?.message
+            }
+          </p>
           <label htmlFor="age">
             <input
               type="number"
@@ -97,6 +109,9 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
               onChange={handleChange}
             />
           </label>
+          <p className={styles.error}>
+            {error?.find((issue) => issue.path[0] === "age")?.message}
+          </p>
           <label htmlFor="email">
             <input
               type="email"
@@ -105,9 +120,21 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
               onChange={handleChange}
             />
           </label>
+          <p className={styles.error}>
+            {
+              error?.find((issue) => issue.path[0] === "email")
+                ?.message
+            }
+          </p>
         </form>
       ) : (
         <>
+          <Image
+            src="/images/avatar.png"
+            alt={user.name}
+            width={150}
+            height={150}
+          />
           <h3>
             <span>Name: </span>
             {user.name}
@@ -120,13 +147,16 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
             <span>Email: </span>
             {user.email}
           </p>
-          <DeleteUserButton id={user._id} />
         </>
       )}
       {isEditing ? (
-        <button onClick={handleSave}>Save</button>
+        <button className={styles.editButton} onClick={handleSave}>
+          Save
+        </button>
       ) : (
-        <button onClick={handleEdit}>Edit details</button>
+        <button className={styles.editButton} onClick={handleEdit}>
+          Edit details
+        </button>
       )}
     </div>
   );

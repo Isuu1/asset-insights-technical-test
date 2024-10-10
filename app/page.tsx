@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 
-import AddUserForm from "./components/AddUserForm";
+import AddUserForm from "./components/AddUserForm/AddUserForm";
 import UserCard from "./components/UserCard/UserCard";
 
 interface UserData {

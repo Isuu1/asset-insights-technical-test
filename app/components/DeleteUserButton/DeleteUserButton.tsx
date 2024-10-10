@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
+import styles from "./deleteUserButton.module.css";
 
 interface DeleteUserButtonProps {
   id: string;
@@ -26,7 +27,11 @@ const DeleteUserButton: React.FC<DeleteUserButtonProps> = ({
     }
   }
 
-  return <button onClick={handleDelete}>Delete user</button>;
+  return (
+    <button className={styles.deleteButton} onClick={handleDelete}>
+      Delete
+    </button>
+  );
 };
 
 export default DeleteUserButton;

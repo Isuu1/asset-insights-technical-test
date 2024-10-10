@@ -4,7 +4,7 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { ZodError } from "zod"; // Import ZodError
 
 import styles from "./addUserForm.module.css";
-import { formSchema } from "../validations/form";
+import { formSchema } from "../../validations/form";
 import toast from "react-hot-toast";
 
 interface FormData {
