@@ -1,3 +1,5 @@
+import styles from "./page.module.css";
+
 export default function Loading() {
-  return <div>Loading...</div>;
+  return <div className={styles.page}>Loading...</div>;
 }
