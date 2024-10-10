@@ -18,7 +18,7 @@ const AddUserForm = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
-    age: 0,
+    age: 18,
     image: "/images/avatar.png",
   });
   const [error, setError] = useState<ZodError["issues"] | null>(null); // Update error state type
@@ -66,7 +66,7 @@ const AddUserForm = () => {
       setFormData({
         name: "",
         email: "",
-        age: 0,
+        age: 18,
         image: "/images/avatar.png",
       });
       setError(null);
