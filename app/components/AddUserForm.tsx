@@ -74,8 +74,7 @@ const AddUserForm = () => {
       console.log(error);
     }
   }
-  console.log("Error:", error);
-  console.log("FormData:", formData);
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h2 className={styles.headline}>Add new user</h2>
